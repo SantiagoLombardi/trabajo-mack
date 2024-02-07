@@ -5,10 +5,16 @@ const PosLogin = (props) => {
     <>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-              <p>¡Gracias por ser parte de este gran proyecto!</p>
-            </div>
+        <div className="ml-4 text-center lg:text-left">
+            <h1 className="text-5xl font-bold">¡Solo un paso mas! 😎</h1>
+            <p className="py-6">
+              Agrega unos ultimos datos y tu CV para formar parte de la red laboral de Mackenna
+            </p>
+            <ul className="steps">
+              <li className="step step-accent" data-content="✓">Registrarse</li>
+              <li className="step step-accent" data-content=" ">Subir tus datos</li>
+              <li className="step" data-content="★">Aplicar a un puesto</li>
+            </ul>
           </div>
 
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -18,7 +24,20 @@ const PosLogin = (props) => {
                   <p className="text-4xl">Santiago Lombardi</p>
                 </div>
                 <div>
-                <div className="skeleton w-32 h-32"></div>
+                <label className="form-control w-full max-w-xs">
+                <div className="avatar placeholder">
+                  <div className="bg-neutral text-neutral-content rounded-xl w-24">
+                    <span className="text-[1rem] input-image p-1"><input
+                    type="file"
+                    accept="image/*"
+                    className=" fixed right-0 left-0 top-0"
+                    placeholder="Subir Imagen"
+                  />Subir foto</span>
+                  </div>
+                </div> 
+                  
+                </label>
+                
                 </div>
               </div>
               <div className="divider"></div>
@@ -45,6 +64,8 @@ const PosLogin = (props) => {
                     className="input input-bordered w-full max-w-xs"
                   />
                 </label>
+
+                
 
                 <label className="form-control w-full max-w-xs">
                   <span className="label-text py-[6.5px] px-[3.25px]">Curriculum Vitae</span>

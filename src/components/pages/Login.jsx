@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-[90vh] bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">¡Bienvenid@ devuelta! 👋</h1>
-            <p className="py-6">
-              Estas a unos pocos pasos de formar de la red laboral de Mackenna,
-              potenciate con la Red Torres
-            </p>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form className="card-body">
@@ -37,7 +33,7 @@ const Login = () => {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <a href="/recuperar-contrena" className="label-text-alt link link-hover">
                     ¿Olvidaste tu contraseña?
                   </a>
                 </label>
