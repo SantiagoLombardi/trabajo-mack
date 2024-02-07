@@ -35,14 +35,14 @@ const Navbar = () => {
                   </div>
                   <div className="avatar">
                     <div className="w-16 rounded-full">
-                      <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                      <img alt="" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                     </div>
                   </div>
                 </div>
                 {/* Sidebar content here */}
-                <li><a>Perfil</a></li>
-                <li><a>Guardados</a></li>
-                <li><a>Cerrar Sesion</a></li>
+                <li><a href='/'>Perfil</a></li>
+                <li><a href='/'>Guardados</a></li>
+                <li><a href='/'>Cerrar Sesion</a></li>
               </ul>
             </div>
           </div>

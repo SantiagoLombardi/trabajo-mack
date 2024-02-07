@@ -14,7 +14,7 @@ const Inicio = () => {
 						{/* <h2 className="text-3xl font-semibold underline " >¿Cual es tu objetivo?</h2> */}
             <div className="flex justify-center ">
               <Link to="/Registrarse" className="btn btn-accent mx-1">
-                Unirme
+                Unirme 
               </Link>
             </div>
           </div>

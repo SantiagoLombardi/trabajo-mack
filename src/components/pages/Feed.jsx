@@ -1,10 +1,11 @@
-import CardEmpleado from "./subcomponents/CardEmpleado"
+// import CardEmpleado from "./subcomponents/CardEmpleado"
 import Posteo from "./subcomponents/Posteo"
 
 const Feed = () => {
   return (
     <>
     <div className="min-h-[90vh] bg-base-300 w-full pt-3">
+      {/* Agregar funcion para dar alerta o un modal la primera vez */}
       {/* <CardEmpleado name="Fulanito de tal" prof="Profesion" /> */}
       <Posteo/>
       <Posteo/>

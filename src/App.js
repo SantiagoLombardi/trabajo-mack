@@ -5,15 +5,17 @@ import Detalle from './components/pages/Detalle';
 import Login from './components/pages/Login';
 import PosLogin from './components/pages/PosLogin';
 import Registro from './components/pages/Registro';
-import Portal from './components/pages/Portal';
-import { getUsuarios, db } from './firebaseConfiguracion';
+// import { getUsuarios, db } from './firebaseConfiguracion';
 import Selector from './components/pages/Selector';
 import Home from './components/layout/Home';
+import Postear from './components/pages/subcomponents/Postear';
 
 function App() {
-  getUsuarios(db)
+  // getUsuarios(db)
+  
   return (
     <>
+
       <Router>
         <Navbar/>
         
@@ -24,7 +26,7 @@ function App() {
           <Route path='/Login' element={<Login/>} />
           <Route path='/PosLogin' element={<PosLogin/>} />
           <Route path='/Registrarse' element={<Registro/>} />
-          <Route path='/Portal' element={<Portal/>} />
+          <Route path='/Postear' element={<Postear/>} />
           <Route path='/Selector' element={<Selector/>} />
 
         </Routes>

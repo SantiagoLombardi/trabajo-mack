@@ -1,7 +1,7 @@
 import Feed from "../pages/Feed"
 import Inicio from "../pages/Inicio"
 
-let sesionActiva = true
+let sesionActiva = false
 
 const Home = () => {
   return (
