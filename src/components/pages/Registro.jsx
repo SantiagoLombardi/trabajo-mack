@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext"
 
 const Registro = () => {
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleGoogleSignIn = () => {
     const auth = getAuth(app);
@@ -16,7 +17,6 @@ const Registro = () => {
         const user = result.user;
         console.log("Usuario registrado con Google:", user);
         // Redirigir al usuario a la página de inicio después del registro
-        const { setIsAuthenticated } = useContext(AuthContext);
         setIsAuthenticated(true)
         navigate("/");
       })
