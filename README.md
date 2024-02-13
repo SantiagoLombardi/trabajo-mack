@@ -1,3 +1,7 @@
+navbar agregar secciones
+- seccion con posteos con filrtros de url por secciones o de filtros de js en la seccion con botones de navegacion 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

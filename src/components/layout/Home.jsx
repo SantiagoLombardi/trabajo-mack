@@ -1,13 +1,22 @@
-import Feed from "../pages/Feed"
-import Inicio from "../pages/Inicio"
-
-let sesionActiva = false
+import React, { useContext, useEffect, useState } from "react";
+import Feed from "../pages/Feed";
+import Inicio from "../pages/Inicio";
+import { AuthContext } from "../../context/AuthContext";
 
 const Home = () => {
+  const { isAuthenticated } = useContext(AuthContext);
+
+  const [authenticated, setAuthenticated] = useState(isAuthenticated);
+
+  useEffect(() => {
+    setAuthenticated(isAuthenticated);
+  }, [isAuthenticated]);
+
   return (
     <>
-      {sesionActiva? <Feed/> : <Inicio/>}
+      {authenticated ? <Feed /> : <Inicio />}
     </>
-  )
-}
-export default Home
+  );
+};
+
+export default Home;

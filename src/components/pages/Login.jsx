@@ -1,54 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import app from "../../firebaseConfig";
+import { AuthContext } from "../../context/AuthContext"
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Usuario registrado con Google:", user);
+      // Redirigir al usuario a la página de inicio después de iniciar sesión
+      const { setIsAuthenticated } = useContext(AuthContext);
+      setIsAuthenticated(true)
+      navigate("/");
+    } catch (error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Error al iniciar sesión con Google:", errorMessage);
+    }
+  };
+
   return (
     <>
-      <div className="hero min-h-[90vh] bg-base-200 ">
+      <div className="hero min-h-[90vh] bg-base-200 mb-[52px]">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">¡Bienvenid@ devuelta! 👋</h1>
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm ">
             <form className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="joedoe@example.com"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="*********"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="/recuperar-contrena" className="label-text-alt link link-hover">
-                    ¿Olvidaste tu contraseña?
-                  </a>
-                </label>
-              </div>
               <div className="form-control mt-6">
-                <button className="btn btn-accent">Iniciar Sesion</button>
-              </div>
-              <div className="divider mb-0">O</div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">
-                  Iniciar Sesion con Google
+                <button
+                  onClick={handleGoogleLogin}
+                  className="btn btn-primary"
+                >
+                  Iniciar Sesión con Google
                 </button>
               </div>
               <label className="label">
-                <Link to="/Registrarse" className="label-text-alt link link-hover">
+                <Link
+                  to="/Registrarse"
+                  className="label-text-alt link link-hover"
+                >
                   ¿No tenes cuenta? Registrate
                 </Link>
               </label>

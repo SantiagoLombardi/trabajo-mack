@@ -1,9 +1,18 @@
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Menu from "../pages/subcomponents/Menu";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { isAuthenticated } = useContext(AuthContext);
+
+  const [authenticated, setAuthenticated] = useState(isAuthenticated);
+
+  useEffect(() => {
+    setAuthenticated(isAuthenticated);
+  }, [isAuthenticated]);
   return (
-    <div className="sticky top-0 z-10">
+    <div className="sticky top-0 z-10 shadow-md">
       <div className="navbar bg-base-200 ">
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl">
@@ -11,7 +20,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex-none gap-2">
-          <div className="drawer drawer-end z-[1]">
+          { authenticated ? <div className="drawer drawer-end z-[1]">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
               <label htmlFor="my-drawer-4" className="">
@@ -45,10 +54,10 @@ const Navbar = () => {
                 <li><a href='/'>Cerrar Sesion</a></li>
               </ul>
             </div>
-          </div>
+          </div> : null }
         </div>
       </div>
-      <Menu />
+      { authenticated ? <Menu /> : null }
     </div>
   );
 };

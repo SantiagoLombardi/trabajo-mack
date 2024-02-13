@@ -5,34 +5,34 @@ import Detalle from './components/pages/Detalle';
 import Login from './components/pages/Login';
 import PosLogin from './components/pages/PosLogin';
 import Registro from './components/pages/Registro';
-// import { getUsuarios, db } from './firebaseConfiguracion';
-import Selector from './components/pages/Selector';
 import Home from './components/layout/Home';
 import Postear from './components/pages/subcomponents/Postear';
+import { AuthProvider } from './context/AuthContext';
+import Feed from './components/pages/Feed';
 
 function App() {
-  // getUsuarios(db)
-  
+
   return (
     <>
+      <AuthProvider>
+        <Router>
+          <Navbar/>
+          
+          <Routes>
 
-      <Router>
-        <Navbar/>
-        
-        <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/Detalle' element={<Detalle/>} />
+            <Route path='/IniciarSesion' element={<Login/>} />
+            <Route path='/PosLogin' element={<PosLogin/>} />
+            <Route path='/Registrarse' element={<Registro/>} />
+            <Route path='/Postear' element={<Postear/>} />
+            <Route path='/Feed' element={<Feed/>} />
 
-          <Route path='/' element={<Home/>} />
-          <Route path='/Detalle' element={<Detalle/>} />
-          <Route path='/Login' element={<Login/>} />
-          <Route path='/PosLogin' element={<PosLogin/>} />
-          <Route path='/Registrarse' element={<Registro/>} />
-          <Route path='/Postear' element={<Postear/>} />
-          <Route path='/Selector' element={<Selector/>} />
+          </Routes>
 
-        </Routes>
-
-        <BottomNavigation/>
-      </Router>
+          <BottomNavigation/>
+        </Router>
+      </AuthProvider>
     </>
   );
 }

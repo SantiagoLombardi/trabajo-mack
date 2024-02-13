@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Inicio = () => {
   return (
     <>
-      <div className="hero min-h-[90vh] bg-base-200">
+      <div className="hero min-h-[90vh] h-auto bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-6xl font-bold">¡Hola! 👋</h1>

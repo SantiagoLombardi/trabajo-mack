@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import app from "../../firebaseConfig";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext"
 
 const Registro = () => {
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+
+  const handleGoogleSignIn = () => {
     const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Usuario registrado:", user);
-        // Aquí puedes redirigir al usuario a la página de inicio, por ejemplo:
-        navigate("/Home");
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // El usuario ha iniciado sesión con Google
+        const user = result.user;
+        console.log("Usuario registrado con Google:", user);
+        // Redirigir al usuario a la página de inicio después del registro
+        const { setIsAuthenticated } = useContext(AuthContext);
+        setIsAuthenticated(true)
+        navigate("/");
       })
       .catch((error) => {
+        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("Error al registrar usuario:", errorMessage);
+        console.error("Error al iniciar sesión con Google:", errorMessage);
       });
   };
 
@@ -31,53 +35,23 @@ const Registro = () => {
           <div className="text-center lg:text-left px-3">
             <h1 className="text-5xl font-bold">¡Bienvenid@! 🚀</h1>
             <p className="py-6">
-              Estas a unos pocos pasos de formar de la red laboral de Mackenna,
-              potenciate con Jobs
+              Estás a unos pocos pasos de formar parte de la red laboral de Mackenna,
+              poténciate con Jobs
             </p>
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body" onSubmit={handleSubmit}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="joedoe@example.com"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="*********"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
+          <div className="card shrink-0 w-full max-w-sm ">
+            <form className="card-body">
               <div className="form-control mt-6">
-                <button type="submit" className="btn bg-accent btn-accent">
-                  Registrarse
-                </button>
-              </div>
-              <div className="divider mb-0">O</div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">
-                  Continuar con Google
+                <button type="button" onClick={handleGoogleSignIn} className="btn btn-info">
+                  Registrarse con Google
                 </button>
               </div>
               <label className="label">
                 <Link
-                  to="/Login"
+                  to="/IniciarSesion"
                   className="label-text-alt link link-hover"
                 >
-                  ¿Ya tenes cuenta? Inicia Sesion
+                  ¿Ya tienes cuenta? Inicia Sesión
                 </Link>
               </label>
             </form>
