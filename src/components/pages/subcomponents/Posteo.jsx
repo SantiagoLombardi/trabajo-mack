@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+// import { useState } from "react";
 
-const Posteo = () => {
+const Posteo = (props) => {
+  // const [tipo, setTipo] = useState(null)
+  // let badgeContent = ""
+
+  // if (props.tipo === "BEmpleo") {
+  //   setTipo("BEmpleo")
+  //   badgeContent = "Busca Empleo"
+  // } else if (props.tipo === "OEmpleo") {
+  //   setTipo("OEmpleo")
+  //   badgeContent = "Ofrece Empleo"
+  // };
+
+
   return (
     <>
       <div className="flex flex-col border border-[oklch(var(--nc))] rounded-lg bg-base-100 mx-4 my-5 p-3">
@@ -13,13 +26,13 @@ const Posteo = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-xl font-semibold">Nombre Apellido</h2>
-            <h3>Puesto</h3>
+            <h2 className="text-xl font-semibold">{props.nombre}</h2>
+            <h3>{props.profesion}</h3> 
           </div>
-          <div className="badge badge-primary relative max-md:right-[-40px] max-sm:right-[-10px] top-1">Ofrece Empleo</div>
+          {/* <div className={`badge relative max-md:right-[-40px] max-sm:right-[-10px] top-1 ${tipo === "OEmpleo" ? 'badge-primary' : ''} ${tipo === "BEmpleo" ? 'badge-primary' : ''} ${tipo === null ? 'hidden' : ''} `}>{badgeContent}</div> */}
         </div>
         <div className="desc">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio asperiores ullam officiis quo? Minima maiores culpa nulla, expedita nobis adipisci aliquam aliquid sequi, atque, perferendis sapiente voluptatibus. Cupiditate, autem porro.</p>
+          <p>{props.desc}</p>
         </div>
         <div>
           <label className="form-control w-full mt-4">

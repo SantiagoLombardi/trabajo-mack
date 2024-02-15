@@ -9,7 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 
 // Proveedor de autenticación
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // Almacenar datos de autenticación en LocalStorage
   useEffect(() => {

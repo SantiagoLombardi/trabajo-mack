@@ -1,16 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Menu from "../pages/subcomponents/Menu";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
   const [authenticated, setAuthenticated] = useState(isAuthenticated);
 
   useEffect(() => {
     setAuthenticated(isAuthenticated);
   }, [isAuthenticated]);
+
+  const handleLogout = () => {
+      logout();
+      navigate("/")
+  };
   return (
     <div className="sticky top-0 z-10 shadow-md">
       <div className="navbar bg-base-200 ">
@@ -49,15 +56,15 @@ const Navbar = () => {
                   </div>
                 </div>
                 {/* Sidebar content here */}
-                <li><a href='/'>Perfil</a></li>
-                <li><a href='/'>Guardados</a></li>
-                <li><a href='/'>Cerrar Sesion</a></li>
+                <li><button >Perfil</button></li>
+                <li><button >Guardados</button></li>
+                <li><button onClick={handleLogout}>Cerrar Sesion</button></li>
               </ul>
             </div>
           </div> : null }
         </div>
       </div>
-      { authenticated ? <Menu /> : null }
+      { authenticated && location.pathname === "/" ? <Menu /> : null }
     </div>
   );
 };

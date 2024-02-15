@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import app from "../../firebaseConfig";
 import { AuthContext } from "../../context/AuthContext"
 
 const Login = () => {
-  const navigate = useNavigate();
   const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleGoogleLogin = async () => {
@@ -17,10 +16,9 @@ const Login = () => {
       console.log("Usuario registrado con Google:", user);
       // Redirigir al usuario a la página de inicio después de iniciar sesión
       setIsAuthenticated(true)
-      navigate("/");
     } catch (error) {
       // Handle Errors here.
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error al iniciar sesión con Google:", errorMessage);
     }

@@ -16,38 +16,34 @@ const Menu = () => {
 
   return (
     <div role="tablist" className="tabs tabs-boxed rounded bg-base-200 pt-2">
-      <a
-        href='/'
+      <button
         role="tab"
         className={`tab ${activeTab === 0 ? 'tab-active' : ''}`}
         onClick={() => handleTabClick(0)}
       >
         Todo
-      </a>
-      <a
-        href='/'
+      </button>
+      <button
         role="tab"
         className={`tab ${activeTab === 1 ? 'tab-active' : ''}`}
         onClick={() => handleTabClick(1)}
       >
         Trabajar
-      </a>
-      <a
-        href='/'
+      </button>
+      <button
         role="tab"
         className={`tab ${activeTab === 2 ? 'tab-active' : ''}`}
         onClick={() => handleTabClick(2)}
       >
         Emplear
-      </a>
-      <a
-        href='/'
+      </button>
+      <button
         role="tab"
         className={`tab ${activeTab === 3 ? 'tab-active' : ''}`}
         onClick={() => handleTabClick(3)}
       >
         Compras
-      </a>
+      </button>
     </div>
   );
 };
