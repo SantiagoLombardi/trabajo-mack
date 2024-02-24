@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 
 // Crea el contexto de autenticación
 export const AuthContext = createContext();
@@ -9,7 +9,8 @@ export const useAuth = () => useContext(AuthContext);
 
 // Proveedor de autenticación
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   // Almacenar datos de autenticación en LocalStorage
   useEffect(() => {
@@ -19,6 +20,15 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   // Función para iniciar sesión con Google
   const loginWithGoogle = async () => {
     const auth = getAuth();
@@ -26,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       setIsAuthenticated(true);
+      setCurrentUser(result.user);
       localStorage.setItem('auth', JSON.stringify(true));
       return result;
     } catch (error) {
@@ -38,11 +49,12 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     // Aquí puedes implementar el cierre de sesión con Firebase
     setIsAuthenticated(false);
+    setCurrentUser(null);
     localStorage.removeItem('auth');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loginWithGoogle, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, currentUser, loginWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

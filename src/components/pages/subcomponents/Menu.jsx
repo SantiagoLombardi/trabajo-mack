@@ -35,14 +35,7 @@ const Menu = () => {
         className={`tab ${activeTab === 2 ? 'tab-active' : ''}`}
         onClick={() => handleTabClick(2)}
       >
-        Emplear
-      </button>
-      <button
-        role="tab"
-        className={`tab ${activeTab === 3 ? 'tab-active' : ''}`}
-        onClick={() => handleTabClick(3)}
-      >
-        Compras
+        Contratar
       </button>
     </div>
   );

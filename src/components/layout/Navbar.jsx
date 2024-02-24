@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Menu from "../pages/subcomponents/Menu";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout,currentUser } = useAuth();
 
   const [authenticated, setAuthenticated] = useState(isAuthenticated);
 
@@ -35,7 +35,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src={currentUser? currentUser.photoURL : ""}
                     />
                   </div>
                 </div>
@@ -46,17 +46,17 @@ const Navbar = () => {
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <div className="flex justify-between mx-[13px] my-[6.5px] py-8 border-neutral-content border-b-[1px]">
                   <div>
-                    <h2 className="text-xl font-semibold">Santiago lombardi</h2>
-                    <h2 className="pt-1">Programador</h2>
+                    <h2 className="text-xl font-semibold">{ currentUser? currentUser.displayName : ""}</h2>
+                    <h2 className="pt-1">Profesion</h2>
                   </div>
                   <div className="avatar">
                     <div className="w-16 rounded-full">
-                      <img alt="" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                      <img alt="" src={ currentUser ? currentUser.photoURL : "" }  />
                     </div>
                   </div>
                 </div>
                 {/* Sidebar content here */}
-                <li><button >Perfil</button></li>
+                <li><Link to='/Perfil' >Perfil</Link></li>
                 <li><button >Guardados</button></li>
                 <li><button onClick={handleLogout}>Cerrar Sesion</button></li>
               </ul>

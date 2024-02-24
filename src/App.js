@@ -9,6 +9,8 @@ import Home from './components/layout/Home';
 import Postear from './components/pages/subcomponents/Postear';
 import { AuthProvider } from './context/AuthContext';
 import Feed from './components/pages/Feed';
+import Perfil from './components/pages/subcomponents/Perfil';
+import EditarPerfil from './components/pages/subcomponents/EditarPerfil';
 
 function App() {
 
@@ -27,8 +29,11 @@ function App() {
             <Route path='/Registrarse' element={<Registro/>} />
             <Route path='/Postear' element={<Postear/>} />
             <Route path='/Feed' element={<Feed/>} />
+            <Route path='/Perfil' element={<Perfil/>} />
+            <Route path='/EditarPerfil' element={<EditarPerfil/>} />
 
           </Routes>
+          <div className='min-h-16 bg-base-300n'/>
 
           <BottomNavigation/>
         </Router>
