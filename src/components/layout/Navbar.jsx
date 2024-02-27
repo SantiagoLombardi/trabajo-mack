@@ -22,7 +22,7 @@ const Navbar = () => {
     <div className="sticky top-0 z-10 shadow-md">
       <div className="navbar bg-base-200 ">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">
+          <Link to="/" className="btn btn-ghost text-xl " style={{marginLeft:' calc(50vw - 43.475px)' }}>
             Jobs
           </Link>
         </div>
