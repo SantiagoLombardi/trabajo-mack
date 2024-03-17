@@ -2,7 +2,6 @@ import Navbar from './components/layout/Navbar';
 import BottomNavigation from './components/layout/BottomNavigation';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Detalle from './components/pages/Detalle';
-import Login from './components/pages/Login';
 import PosLogin from './components/pages/PosLogin';
 import Registro from './components/pages/Registro';
 import Home from './components/layout/Home';
@@ -24,7 +23,6 @@ function App() {
 
             <Route path='/' element={<Home/>} />
             <Route path='/Detalle' element={<Detalle/>} />
-            <Route path='/IniciarSesion' element={<Login/>} />
             <Route path='/PosLogin' element={<PosLogin/>} />
             <Route path='/Registrarse' element={<Registro/>} />
             <Route path='/Postear' element={<Postear/>} />
@@ -33,7 +31,7 @@ function App() {
             <Route path='/EditarPerfil' element={<EditarPerfil/>} />
 
           </Routes>
-          <div className='min-h-16 bg-base-300n'/>
+          {/* <div className='min-h-16 bg-base-300'/> */}
 
           <BottomNavigation/>
         </Router>

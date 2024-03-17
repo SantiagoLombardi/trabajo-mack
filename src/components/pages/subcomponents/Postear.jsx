@@ -19,7 +19,7 @@ const Postear = () => {
         return;
       }
       // Crear un nuevo post con el contenido actual, la opción seleccionada y el ID del usuario actual
-      await createPost(currentUser.uid, content);
+      await createPost(currentUser.uid, content, selectedOption, currentUser.displayName, currentUser.photURL);
       // Limpiar el campo de contenido y la opción seleccionada después de publicar
       setContent("");
       setSelectedOption("");
@@ -47,9 +47,9 @@ const Postear = () => {
             <option disabled value="">
               ¿Qué buscas?
             </option>
-            <option value="Busco Empleados">Busco Empleados</option>
-            <option value="Busco Trabajo">Busco Trabajo</option>
-            <option value="Otros">Otros</option>
+            <option value="OEmpleo" >Busco Empleados</option>
+            <option value="BEmpleo" >Busco Trabajo</option>
+            <option value={null} >Otros</option>
             <option disabled>Vender (opción disponible próximamente)</option>
           </select>
           {error && (

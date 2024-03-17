@@ -30,12 +30,12 @@ const Posteo = (props) => {
           <div className="mr-2">
             <div className="avatar">
               <div className="w-12 rounded-full">
-                <img alt="" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img alt="" src={props.photoUrl} />
               </div>
             </div>
           </div>
           <div>
-            <h2 className="text-xl font-semibold">{props.nombre}</h2>
+            { props.tipo !== "null" || null ? <h2 className="text-xl font-semibold w-min">{props.nombre}</h2> : <h2 className="text-xl font-semibold">{props.nombre}</h2> }
             <h3>{props.profesion}</h3> 
           </div>
           { props.tipo === "OEmpleo" ? <div className="badge relative max-md:right-[-40px] max-sm:right-[-10px] top-1 badge-info"> Desea contratar </div> : null }

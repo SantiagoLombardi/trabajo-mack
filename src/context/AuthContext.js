@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { agregarUsuarioConVerificacion } from '../firebaseConfig'
+// import { createUser } from '../firebaseConfig';
 // saque del import a 'signOut' porque no se usaba
 // Crea el contexto de autenticación
 export const AuthContext = createContext();
@@ -38,6 +40,15 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       setCurrentUser(result.user);
       localStorage.setItem('auth', JSON.stringify(true));
+
+      const { uid, displayName, email, photoURL } = result.user;
+      await agregarUsuarioConVerificacion(uid, {
+        name: displayName,
+        email: email,
+        photo: photoURL,
+        phone: '' // Puedes agregar más campos aquí si es necesario
+      });
+
       return result;
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
