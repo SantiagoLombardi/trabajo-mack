@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+// Menu.jsx
+import React from 'react';
+import { useActiveTab } from '../../../context/ActiveTabContext';
 
 const Menu = () => {
-  // Estado para realizar un seguimiento del tab activo
-  const [activeTab, setActiveTab] = useState(0);
+  const { activeTab, setActiveTab } = useActiveTab();
 
-  // Función para manejar el cambio de tab
   const handleTabClick = (index) => {
-    // Verificar si el tab clickeado es el mismo que el tab activo actualmente
-    if (index === activeTab) {
-      return; // No hacer nada si el tab clickeado ya está activo
-    }
-    // Establecer el tab activo como el tab clickeado
     setActiveTab(index);
   };
 

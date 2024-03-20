@@ -10,12 +10,15 @@ import { AuthProvider } from './context/AuthContext';
 import Feed from './components/pages/Feed';
 import Perfil from './components/pages/subcomponents/Perfil';
 import EditarPerfil from './components/pages/subcomponents/EditarPerfil';
+import { ActiveTabProvider } from "./context/ActiveTabContext"
 
 function App() {
 
   return (
     <>
       <AuthProvider>
+        <ActiveTabProvider>
+        
         <Router>
           <Navbar/>
           
@@ -35,6 +38,7 @@ function App() {
 
           <BottomNavigation/>
         </Router>
+        </ActiveTabProvider>
       </AuthProvider>
     </>
   );
